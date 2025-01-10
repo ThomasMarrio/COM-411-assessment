@@ -1,10 +1,12 @@
 import csv
-
+from visual import *
+from tui import *
+from process import *
 reviews = []
 
 def main_menu():
     while True:
-        print("\nPlease enter the letter which corresponds with your desired menu choice:\n   [A] View Data\n   [B]Visualise Data\n   [X]Exit")
+        print("\nPlease enter the letter which corresponds with your desired menu choice:\n   [A] View Data\n   [B] Visualise Data\n   [X] Exit")
         choice = input().lower()
         if choice == 'a':
             print("You have chosen option A - View Data")
@@ -22,10 +24,13 @@ def B_menu():
     choice = input().lower()
     if choice == 'a':
         print("You have chosen option A - Most reviewed Parks")
+        B_Submenu_A(reviews)
     elif choice == 'b':
         print("You have chosen option B - Park Ranking by Nationality")
+        B_Submenu_B(reviews)
     elif choice == 'c':
         print("You have chosen option C - Most Popular Month by Park")
+        B_Submenu_C(reviews)
 
 def A_menu():
     print("\nPlease enter one of the following options:\n   [A] View Reviews by Park\n   [B] Number of Reviews by Park and Reviewer Location\n   [C] Average Score per year by Park\n   [D] Average Score per year by Park by Reviewer Location")
