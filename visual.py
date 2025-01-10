@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
-from pip._internal import locations
-
+from process import *
 
 def B_Submenu_A(reviews):
     ParkLocations =[]
@@ -62,40 +61,6 @@ def B_Submenu_B(reviews):
         plt.tight_layout()
         plt.xticks(rotation=8)
         plt.show()
-
-def get_all_reviews_for_park(location,reviews):
-    count = 0
-    reviews_For_Park = []
-    for review in reviews:
-        if review[4].__contains__(location):
-            reviews_For_Park.append(review)
-            count += 1
-    return reviews_For_Park , count
-
-def get_all_reviews_for_month(month,reviews):
-    reviews_For_Month = []
-    for review in reviews:
-        if review[2].__contains__("-10"):
-            if month == 10:
-                reviews_For_Month.append(review)
-        elif review[2].__contains__("-11"):
-            if month == 11:
-                reviews_For_Month.append(review)
-        elif review[2].__contains__("-12"):
-            if month == 12:
-                reviews_For_Month.append(review)
-        elif review[2].__contains__(f"-{month}"):
-            reviews_For_Month.append(review)
-    return reviews_For_Month
-
-def get_average_score(reviews):
-    total_score = 0
-    count = 0
-    for review in reviews:
-        total_score += int(review[1])
-        count +=1
-    average_score = total_score/count
-    return average_score
 
 def B_Submenu_C(reviews):
     months_of_year = ["January","February","March","April","May","June","July","August","September","October","November","December"]
