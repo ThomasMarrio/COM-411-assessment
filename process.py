@@ -2,7 +2,7 @@ import csv
 
 reviews = []
 
-def CSVloader():
+def csv_loader():
     count = 0
     with open('disneyland_reviews.csv') as csvfile:
         csvreader = csv.reader(csvfile)
@@ -14,86 +14,86 @@ def CSVloader():
         print(f"Finished loading reviews, there are currently {count} reviews.")
     return reviews
 
-def get_average_score(reviews):
+def get_average_score(list_of_reviews):
     total_score = 0
     count = 0
-    for review in reviews:
+    for review in list_of_reviews:
         total_score += int(review[1])
         count +=1
     average_score = total_score/count
     return average_score
 
-def get_all_reviews_for_month(month,reviews):
-    reviews_For_Month = []
-    for review in reviews:
+def get_all_reviews_for_month(month, list_of_reviews):
+    reviews_for_month = []
+    for review in list_of_reviews:
         if review[2].__contains__("-10"):
             if month == 10:
-                reviews_For_Month.append(review)
+                reviews_for_month.append(review)
         elif review[2].__contains__("-11"):
             if month == 11:
-                reviews_For_Month.append(review)
+                reviews_for_month.append(review)
         elif review[2].__contains__("-12"):
             if month == 12:
-                reviews_For_Month.append(review)
+                reviews_for_month.append(review)
         elif review[2].__contains__(f"-{month}"):
-            reviews_For_Month.append(review)
-    return reviews_For_Month
+            reviews_for_month.append(review)
+    return reviews_for_month
 
-def get_all_reviews_for_park(location,reviews):
+def get_all_reviews_for_park(location, list_of_reviews):
     count = 0
-    reviews_For_Park = []
-    for review in reviews:
+    reviews_for_park = []
+    for review in list_of_reviews:
         if review[4].__contains__(location):
-            reviews_For_Park.append(review)
+            reviews_for_park.append(review)
             count += 1
-    return reviews_For_Park , count
+    return reviews_for_park , count
 
-def get_all_reviews_for_park_from_location(location,park,reviews):
-    reviews_For_Park = []
+def get_all_reviews_for_park_from_location(location, park, list_of_reviews):
+    reviews_for_park = []
     count = 0
-    for review in reviews:
+    for review in list_of_reviews:
         if review[3].__contains__(location) and review[4].__contains__(park):
             count += 1
-            reviews_For_Park.append(review)
-    return reviews_For_Park , count
+            reviews_for_park.append(review)
+    return reviews_for_park , count
 
-def A_Submenu_A(reviews):
+def a_submenu_a(list_of_reviews):
     print("\nPlease enter what park you would like to see all the reviews for: (Please only enter the location, ie for Disneyland Paris enter 'Paris' (case sensitive))")
     location = input()
     count = 0
-    for review in reviews:
+    for review in list_of_reviews:
         if review[4].__contains__(location):
             print(review)
             count += 1
     if count == 0:
         print("No reviews found for that location, please try reentering the location.")
 
-def A_Submenu_B(reviews):
+def a_submenu_b(list_of_reviews):
     print("\nPlease enter what park you would like to see the number of reviews for: (Please only enter the location, ie for Disneyland Paris enter 'Paris' (case sensitive))")
     park_location = input()
     print("Please enter the origin of the reviews you would like to see the number of: (Same rules apply)")
     review_location = input()
-    count = get_all_reviews_for_park_from_location(review_location,park_location,reviews)[1]
+    count = get_all_reviews_for_park_from_location(review_location, park_location, list_of_reviews)[1]
     if count == 0:
         print("No reviews found for that location for that park, please try reentering the locations.")
     else:
         print(f"Disneyland {park_location} has {count} reviews from {review_location}.")
 
-def A_Submenu_C(reviews):
+def a_submenu_c(list_of_reviews):
     print("\nPlease enter what park you would like to see the average score for: (Please only enter the location, ie for Disneyland Paris enter 'Paris' (case sensitive))")
     location = input()
     print("Please enter the year you would like to see the average score for:")
     year = input()
     total = 0
     count = 0
-    for review in reviews:
+    for review in list_of_reviews:
         if review[2].__contains__(year) and review[4].__contains__(location):
             total += int(review[1])
             count += 1
     average = total / count
     print(f"The Average Score for Disneyland {location} in {year} is {average}.")
 
-def A_Submenu_D(reviews):
+def a_submenu_d():
     pass
     # ParkLocations = []
     # reviews_For_Park = []

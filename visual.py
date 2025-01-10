@@ -1,27 +1,27 @@
 import matplotlib.pyplot as plt
 from process import *
 
-def B_Submenu_A(reviews):
+def b_submenu_a(list_of_reviews):
     ParkLocations =[]
     numberOfReviews =[]
-    for review in reviews:
+    for review in list_of_reviews:
         if ParkLocations.count(review[4]) == 0:
             ParkLocations.append(review[4])
             numberOfReviews.append(1)
         else:
             numberOfReviews[ParkLocations.index(review[4])] += 1
-    plt.pie(numberOfReviews,autopct = lambda pct: Label_On_Pie_Chart(pct, numberOfReviews), labels=ParkLocations)
+    plt.pie(numberOfReviews, autopct = lambda pct: label_on_pie_chart(pct, numberOfReviews), labels=ParkLocations)
     plt.show()
 
-def Label_On_Pie_Chart(pct, allvalues): # This function is not mine however its only purpose is to make the pie chart look nicer
-    absolute = int(pct / 100.*sum(allvalues))
+def label_on_pie_chart(pct, all_values): # This function is not mine however its only purpose is to make the pie chart look nicer
+    absolute = int(pct / 100.*sum(all_values))
     return "{:.1f}%\n({:d})".format(pct, absolute)
 
-def B_Submenu_B(reviews):
+def b_submenu_b(list_of_reviews):
     while True:
         print("\nPlease enter what park you would like to use: (Please only enter the location, ie for Disneyland Paris enter 'Paris' (case sensitive))")
         location = input()
-        temp = get_all_reviews_for_park(location, reviews)
+        temp = get_all_reviews_for_park(location, list_of_reviews)
         count = temp[1]
         reviews_For_Park = temp[0]
         locations_Of_Reviews = []
@@ -62,11 +62,11 @@ def B_Submenu_B(reviews):
         plt.xticks(rotation=8)
         plt.show()
 
-def B_Submenu_C(reviews):
+def b_submenu_c(list_of_reviews):
     months_of_year = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     print("\nPlease enter what park you would like to use: (Please only enter the location, ie for Disneyland Paris enter 'Paris' (case sensitive))")
     location = input()
-    temp = get_all_reviews_for_park(location, reviews)
+    temp = get_all_reviews_for_park(location, list_of_reviews)
     count = temp[1]
     reviews_For_Park = temp[0]
     Average_score_for_Month = []
